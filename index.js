@@ -40,49 +40,83 @@ var axios_1 = require("axios");
 var fs = require("fs");
 var Papa = require("papaparse");
 var fast_csv_1 = require("fast-csv");
+function generateConversationId() {
+    return Math.floor(10000 + Math.random() * 90000).toString();
+}
 function evaluateQueries(apiKey, filePath) {
     return __awaiter(this, void 0, void 0, function () {
-        var csvContent, results, i, question, response, csvOutput, error_1;
+        var csvContent, results, totalQuestions_1, processedCount_1, startTime_1, showProgress, i, question, conversation_id, response, error_1, currentTimestamp, csvOutput, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 6, , 7]);
+                    _a.trys.push([0, 10, , 11]);
                     csvContent = fs.readFileSync(filePath, 'utf8');
                     results = Papa.parse(csvContent, {
                         header: true,
                         skipEmptyLines: true,
                     }).data;
+                    totalQuestions_1 = results.length;
+                    processedCount_1 = 0;
+                    startTime_1 = Date.now();
+                    showProgress = setInterval(function () {
+                        var elapsedMinutes = (Date.now() - startTime_1) / 60000;
+                        var avgTimePerSet = elapsedMinutes / (processedCount_1 / 6);
+                        var setsLeft = (totalQuestions_1 - processedCount_1) / 6;
+                        var estimatedTimeLeft = avgTimePerSet * setsLeft;
+                        console.log("Progress: ".concat(processedCount_1, "/").concat(totalQuestions_1, " Estimated time left: ").concat(estimatedTimeLeft.toFixed(2), " minutes."));
+                    }, 20000);
                     i = 0;
                     _a.label = 1;
                 case 1:
-                    if (!(i < results.length)) return [3 /*break*/, 4];
+                    if (!(i < results.length)) return [3 /*break*/, 8];
                     question = results[i].question;
-                    return [4 /*yield*/, axios_1.default.post('https://api.mendable.ai/v0/mendableChat', {
-                            apiKey: apiKey,
-                            question: question,
-                        })];
+                    conversation_id = generateConversationId();
+                    results[i].conversation_id = conversation_id; // Adding conversation_id to the result.
+                    _a.label = 2;
                 case 2:
-                    response = _a.sent();
-                    results[i].mendableAnswer = response.data.answer;
-                    _a.label = 3;
+                    _a.trys.push([2, 6, , 7]);
+                    return [4 /*yield*/, axios_1.default.post('https://api.mendable.ai/v0/mendableChat', {
+                            question: question,
+                            anon_key: apiKey,
+                            conversation_id: conversation_id,
+                            shouldStream: false
+                        })];
                 case 3:
-                    i++;
-                    return [3 /*break*/, 1];
-                case 4: return [4 /*yield*/, (0, fast_csv_1.writeToString)(results, { headers: true })];
+                    response = _a.sent();
+                    results[i].mendableAnswer = response.data.answer.text;
+                    if (!(i % 6 === 5)) return [3 /*break*/, 5];
+                    return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 10000); })];
+                case 4:
+                    _a.sent();
+                    _a.label = 5;
                 case 5:
-                    csvOutput = _a.sent();
-                    fs.writeFileSync('out.csv', csvOutput);
+                    processedCount_1++;
                     return [3 /*break*/, 7];
                 case 6:
                     error_1 = _a.sent();
-                    console.error('Error:', error_1);
+                    console.error("Failed to fetch answer for question: ".concat(question, ". Error:"), error_1);
                     return [3 /*break*/, 7];
-                case 7: return [2 /*return*/];
+                case 7:
+                    i++;
+                    return [3 /*break*/, 1];
+                case 8:
+                    clearInterval(showProgress); // Stop showing the progress once all questions are processed.
+                    currentTimestamp = new Date().toISOString().replace(/[\W_]+/g, "_");
+                    return [4 /*yield*/, (0, fast_csv_1.writeToString)(results, { headers: true })];
+                case 9:
+                    csvOutput = _a.sent();
+                    fs.writeFileSync("".concat(currentTimestamp, "_mendable_eval.csv"), csvOutput);
+                    return [3 /*break*/, 11];
+                case 10:
+                    error_2 = _a.sent();
+                    console.error('Error:', error_2);
+                    return [3 /*break*/, 11];
+                case 11: return [2 /*return*/];
             }
         });
     });
 }
 // Usage:
-evaluateQueries('6fb69289-e4fb-48be-a046-18b12910f5c7', '/workspaces/mendable_evaluation/perfect_apps_eval.csv')
+evaluateQueries('448a3e47-642b-48be-92d1-d67d0e44221c', '/workspaces/mendable_evaluation/perfect_apps_eval.csv')
     .then(function () { return console.log('Done'); })
     .catch(function (err) { return console.error('Error:', err); });

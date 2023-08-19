@@ -1,0 +1,663 @@
+question,answer,mendableAnswer
+How do I import an app file in PerfectApps?," Log on to PerfectApps, go to the Apps Dashboard and click the Import button. Then select the app file you saved locally (.PF) and continue through the import steps.","To import an app file in PerfectApps, you can follow these steps:
+
+1. Go to the Apps Dashboard.
+2. Select the app in the Edit Apps tree.
+3. Click the Migrate button.
+4. In the Migrate dialog, choose the ""Import - App Design"" option.
+5. Select the app file (.PF) from your local system.
+6. Click the OK button to import the app file.
+
+Please note that if the app you are importing has dependencies on connections, you must also migrate the applicable connection before importing the app. The connection migration must be complete for the app to be imported without error.
+
+I hope this helps! Let me know if you have any further questions."
+How do I create a personal folder in the View Apps section?," Navigate to the Apps Dashboard, and choose View Apps from the tree. In the Dashboard Toolbar, select New > Folder and choose Personal type.","To create a personal folder in the View Apps section, follow these steps:
+
+1. Navigate to the Apps Dashboard and choose View Apps from the tree.
+2. In the Dashboard Toolbar, select New > Folder.
+3. Choose Personal as the folder type.
+4. Once the new folder has been created, you can click and drag apps into the folder as needed.
+
+Please note that this information is based on the verified sources provided."
+What steps should I follow to add an e-mail server as an account resource?,"To add an e-mail server as an account resource, go to the Settings Dashboard, click the New button and choose Email Server. On the Email Server details screen, enter a Name for the server under the General section. Choose Basic or Microsoft 365 Exchange Online from the Server Type drop-down. Under the Server section, enter the SMTP address in the Name field. If the server requires secure authentication, check the Requires SSL box then enter the applicable e-mail username and password below. In the User area, enter the Display Name and Email Address that will be shown to the e-mail recipient on the incoming e-mail. In the Reply to area, enter the Display Name and Email Address that will be shown if the recipient chooses to reply to the e-mail message. Refer to the Failed Notifications section for information regarding the miscellaneous resource, you may set it as the default for this account by clicking the Make Default button.","To add an e-mail server as an account resource, follow these steps:
+
+1. Go to the Settings Dashboard.
+2. Click the New button and choose Email Server.
+3. On the Email Server details screen, enter a Name for the server under the General section.
+4. Choose either Basic or Microsoft 365 Exchange Online from the Server Type drop-down.
+5. Under the Server section, enter the SMTP address in the Name field.
+6. If the server requires secure authentication, check the Requires SSL box and enter the applicable e-mail username and password.
+7. In the User area, enter the Display Name and Email Address that will be shown to the e-mail recipient on the incoming e-mail.
+8. In the Reply to area, enter the Display Name and Email Address that will be shown if the recipient chooses to reply to the e-mail message.
+9. Click Apply Changes.
+10. After creating the new e-mail server resource, click the Test button to verify the set-up.
+
+After establishing the new e-mail server resource, you can set it as the default for your account by clicking the Make Default button. This default selection is the e-mail address by which system e-mails and notifications will be sent, unless otherwise overridden in the Notify behavior. If you do not specify an account-level default e-mail server, the system e-mail server will be used.
+
+Please note that you must have a Full User account with the added Account privilege in order to create account resources."
+How can I give a user the ability to use the Archiving function?," To give a user the ability to use the Archiving function, the 'Allow Archiving at User Level' check box must be selected on the Settings page of the Administration Console. Then, the 'Archiving' check box must be selected for the Full User roles on the Settings Dashboard > Users > Users page.","To give a user the ability to use the Archiving function in PerfectApps, you need to assign them the appropriate privileges. The Archiving function is part of the Full User privileges in PerfectApps. 
+
+To assign the Full User privileges to a user, follow these steps:
+
+1. On the Settings Dashboard, click ""New"" and then ""User"".
+2. Enter the user's Name, E-mail, and other information.
+3. Choose the Role of the user as ""Full User"".
+4. Click ""Apply Changes"" to save the settings.
+5. Optionally, you can assign the user to user groups, positions, workflow roles, or send them notifications.
+
+By assigning the user the Full User role, they will have access to the Archiving function along with other privileges such as creating and editing apps, reports, publishing, managing connections, and more.
+
+Please note that the Archiving function may have additional configuration options or requirements specific to your organization's setup. It is recommended to refer to the PerfectApps Help Guide or contact PerfectApps support for more detailed instructions or assistance with configuring the Archiving function."
+What are the steps to archive app instances?," Navigate to the Settings Dashboard, expand the Archiving Settings tree node and select New Archive, select one or more apps for instances across all accounts and users in the system to determine which meet the specified criteria, and confirm the action.","To archive app instances, follow these steps:
+
+1. Select the app in the Edit Apps tree on the Dashboard.
+2. In the detail area of the app, click Delete.
+3. In the Delete dialog, select ""Delete previous versions"".
+4. Click OK to perform the deletion.
+
+This will delete all previous versions of the app, along with their associated app instances. Please note that this action cannot be undone and will permanently remove the app instances and their data."
+How can I restore or permanently delete archived app instances?,"You can restore or permanently delete archived app instances by navigating to the Settings Dashboard, expanding the Archiving Settings tree node and selecting Archived Instances. From there, you can select one or more apps from the list, filter the results list by selecting a specific app instance status, entering an instance name or narrowing based upon date combinations, and select one or more archived app instances from the results list. To restore, click Restore, and to permanently delete, click Delete.","To permanently delete archived app instances, you can use the DeleteAppInstance method in the PerfectApps API. This method allows you to delete a specific app instance by providing the app ID and instance number. The DeleteAppInstance method returns an integer result indicating success or an error. You will also receive a new security token that should be used for the next API call.
+
+Here is an example of a REST request to delete an app instance:
+
+```
+POST /REST/api/portal/DeleteAppInstance HTTP/1.1
+Host: <server url>
+Content-Type: multipart/form-data
+
+Content-Disposition: form-data; name=""appId"" string
+Content-Disposition: form-data; name=""InstanceId"" int
+Content-Disposition: form-data; name=""tokenIn"" string
+```
+
+And the corresponding response:
+
+```
+HTTP/1.1 200 OK
+Content-Length: length
+Content-Type: application/json; charset=utf-8
+{
+""DeleteAppInstanceResult"": int,
+""tokenOut"": string
+}
+```
+
+To restore archived app instances, unfortunately, the verified sources do not provide any information on how to restore them. Therefore, I could not find the answer to this in the verified sources, but I am learning more every day!"
+What is the purpose of the Layout view in the App Designer?," The Layout view allows users to add, change, or remove visual components of the app by dragging and dropping app objects onto the canvas.","The purpose of the Layout view in the App Designer is to design the user interface for the app. In this view, you can add, change, or remove visual components of the app by dragging and dropping app objects onto the canvas. The Toolbox in the Layout view includes all app objects that you can select to build your app, such as text, buttons, input fields, check boxes, and more. Each app object has a corresponding view within the Properties panel, where you can modify the properties of the selected object. The Layout view is one of the four views in the App Designer, along with Mobile, Behavior, and Workflow views."
+What does the Toolbox contain in the Behavior view of the App Designer?," The Toolbox contains behavior commands such as Set Field, Print and Submit Data.","The Toolbox in the Behavior view of the App Designer contains all behavior commands. These behavior commands allow you to create highly intelligent apps and web applications using an intuitive graphical interface. They include tools for conditional branching, loops, calculations, copying data between fields, mandatory field checks, question skipping, page skipping, and more. The Toolbox is located in the Behavior view along with the behavior diagram area or canvas and the Properties panel which displays the properties of the selected command or active behavior sequence."
+What is the purpose of the Common Toolbox in the App Designer?, The Common Toolbox in the App Designer can be configured to store the objects that you will use most of the time. You can configure a separate common toolbox for both App Layout objects and Behavior commands. You can move items from the Available Items list to the Common Group Items list by selecting them and clicking the Add > button.,"The purpose of the Common Toolbox in the App Designer is to provide a set of commonly used app objects that can be added to the app. These objects include text, buttons, input fields, check boxes, sound or movie clips, and more. The Common Toolbox allows users to easily drag and drop these objects onto the canvas to build their app."
+How can one search for toolbox objects in the App Designer?, You can use the Search Tools feature in the toolbox to search for the object that you would like to use. This feature supports short name searches.,"To search for toolbox objects in the App Designer, you can use the ""Search App Design"" field in the Navigation Panel. This field allows you to search for objects by name, and partial name searches are supported. You can find the Navigation Panel by navigating to ""Designing an App"" and then selecting ""App Designer Overview"" in the PerfectApps Help Guide."
+How can you configure the common toolbox in the App Designer?," You can configure the common toolbox by selecting it and clicking the Settings button to open the Common Group Configuration dialogue box. Then, you can move items from the Available Items list to the Common Group Items list by selecting them and clicking the Add > button. You can also remove items from the Common Group Items list by selecting them and clicking the < Remove button. Finally, click the Save button to save your changes.","To configure the common toolbox in the App Designer, you can follow these steps:
+
+1. Expand the Input section of the Toolbox.
+2. Drag and drop the desired object from the common toolbox onto the page.
+3. Expand the Settings section of the Properties panel.
+4. Modify the properties of the selected object as needed.
+
+Please note that the specific steps may vary depending on the object you are working with. For more detailed instructions on configuring specific objects, you can refer to the PerfectApps Help Guide's ""Adding Objects to your App"" section.
+
+I hope this helps! Let me know if you have any further questions."
+How can graphics be added to an app in the App Designer?," To add graphics to an app in the App Designer, select the Assets toolbox, click on the Add Asset button to start the import wizard, click the Select Button, browse to and select the asset you want to add and click the OK button, change the name of the asset if required and then click the OK button.","To add graphics to an app in the App Designer, follow these steps:
+
+1. Select the Assets toolbox.
+2. Click on the Add Asset button to start the import wizard.
+3. Click the Select Button, browse to and select the graphic you want to add, and click the OK button.
+4. Change the name of the graphic if required and then click the OK button.
+
+You can also watch a video tutorial on how to import and use graphics effectively in your app. Additionally, you can add a Submit Data command to the Picture is clicked behavior event to convert your graphic into a submit button.
+
+For more information and detailed instructions, you can refer to the ""Adding a Picture or Graphic"" topic in the PerfectApps Help Guide.
+
+I hope this helps! Let me know if you have any further questions."
+What information does the Properties panel display in the App Designer?," The Properties panel displays configuration options available for the app in general or the pages and objects that comprise it. Depending on the view (Layout, Mobile, Behavior, or Workflow) and item selected (app, page, or object), different options will be presented.","The Properties panel in the App Designer displays configuration options available for the app in general or the pages and objects that comprise it. It allows you to modify the attributes of selected objects on the canvas. The options presented in the Properties panel depend on the view (Layout, Mobile, Behavior, or Workflow) and the item selected (app, page, or object). For a complete description of properties for each object in the four views, you can refer to the Layout Objects Properties Reference, Mobile Design Reference, Behaviors Properties Reference, or Workflow Properties Reference."
+How can one modify app styles in PerfectApps?," To modify app styles, go to App Properties by clicking the navigation arrows in the Properties panel or clicking on the canvas background. Expand the Style section to change settings, such as screen positioning, color, drop shadow, frame, size and page turning effects.","To modify app styles in PerfectApps, you can follow these steps:
+
+1. Select the specific object in your app that you want to modify.
+2. On the object's Properties panel, navigate to the Style section.
+3. Make the desired changes to the appearance of the object, such as color, size, background, or text style.
+
+If you want to apply a theme to your app, follow these steps:
+
+1. Go to the App Properties by clicking on the app background.
+2. Expand the Theme section to view or modify the theme settings.
+3. Change the settings according to your preferences.
+
+To reset a theme in PerfectApps, follow these steps:
+
+1. Go to the Page or Object Properties by clicking the navigation arrows in the properties panel or selecting an app object or page in the layout area.
+2. Expand the Style section.
+3. Click the ""Use App Theme"" button to reset the theme settings.
+
+Please note that any changes you make to the app styles will override the default theme attributes."
+What are the steps to change the size of an app?," To change an app size, click on the app layout background (area surrounding the page layout) to open the App Properties. In App Properties, expand the Settings section and enter the Width and Height, or choose from one of the pre-defined options in the drop-down.","To change the size of an app, you can follow these steps:
+
+1. Click on the app background (area surrounding the page in the Layout canvas) to view the app properties.
+2. In the ""Size"" section, choose from several standard screen and print sizes for apps or enter custom dimensions.
+3. Enter the desired width, height, and unit of measurement in the appropriate fields.
+4. Click ""OK"" to apply the new size.
+
+Please note that the verified sources do not provide specific instructions on how to change the size of an app, but these steps should help you achieve the desired result."
+Why is setting the App Instance Name important and how can one set it?, Setting the App Instance Name is important because it allows users to easily identify different app instances. The App Instance Name can be set in the App Properties by selecting either Value of a Field (if a single field contains the Instance Name) or by combining fields using the Formula Editor.,"Setting the App Instance Name is important because it helps differentiate between different instances of the app. It allows users to easily identify and manage specific instances. There are different ways to set the App Instance Name:
+
+1. Static Text or Number: You can enter a static text or numeric value as the instance name. This is useful when the names of new app instances do not need to be dynamic.
+
+2. Value of a Field: You can name new app instances by taking the value of a single field or a combination of fields. This is the most commonly used choice.
+
+3. Special Values: You can use special values, including app metadata, to generate the app instance name. A complete list of special values and their purposes is available.
+
+4. Formula: You can provide a condition or formula as the value for the instance name. Formulas can use field values, dates, button states, or other special values.
+
+To set the App Instance Name, go to the App Properties section and navigate to the ""Settings"" tab. From there, you can choose the desired method for setting the instance name."
+What are the steps to add a new page to your app?," To add a new page to your app, you can select the ""+ Add Page"" button in the App and Page Details section. This will add a new page onto your app.","To add a new page to your app, follow these steps:
+
+1. Open the App Designer by clicking on the ""Design"" button at the bottom of the page.
+2. In the App Designer, go to the ""Format"" menu.
+3. Click on the ""Add New Page"" option.
+4. A new page will be added to your app.
+
+That's it! You have successfully added a new page to your app."
+How can a specific color or picture be set as a page background?," To set a page background color, select the page in the Navigation Panel and click in the background of the page to open the Page Properties. In Page Properties, expand the Style section and click on a specific color or enter the Hexadecimal color code value. To set a page background graphic, select the page in the Navigation Panel and click in the background of the page to open the Page Properties. In Page Properties, expand the Settings section and select a Picture from the drop-down list. Adjust the picture display to stretch, center or tile.","To set a specific color or picture as a page background, you can follow these steps:
+
+1. Click on the section on the canvas where you want to set the background.
+2. In the Mobile Design Section Properties Panel, go to the ""Style"" section.
+3. Under the ""Background"" option, enter a Hex color code or click on the color box to select a background color for the object.
+4. If you want to set a picture as the background, choose a picture from the drop-down list under the ""Picture"" option. Note that the picture must have been previously uploaded in the Assets section of the Toolbox.
+5. If desired, you can also select the ""Pre-load"" check box to pre-load the picture file when the app is accessed.
+6. To align the background picture within the group object, choose an option from the ""Align"" drop-down menu. Options include Center, Stretch, and Tile.
+
+Please note that these instructions are specific to the PerfectApps software."
+How can you undo the deletion of a page in PerfectApps?, You can undo the page deletion by selecting Edit from the Menu bar and choosing Undo Delete.,"To undo the deletion of a page in PerfectApps, you can follow these steps:
+
+1. Select the app in the Edit Apps tree on the Dashboard.
+2. In the detail area of the app, click on the ""Delete"" button.
+3. In the Delete dialog, select the option ""Delete previous versions"".
+4. Click ""OK"" to perform the deletion.
+
+By selecting the ""Delete previous versions"" option, the latest version of the app will be retained, and all other previous versions will be deleted along with their app instances. This will move the app from a ""published"" to an ""unpublished"" state. Once you publish the app again, the app instance numbers will be reset to ""0"" and the newest submissions on the latest version of the app will begin back at instance number ""1"".
+
+Please note that this process will permanently delete the deleted page and its associated app instances. There is no specific undo function for the deletion of a page in PerfectApps."
+How can I set the tab order for objects in the App Designer?," With an app loaded in the App Designer in Layout view, select the object for which you want to control tabbing. The object properties are displayed on the Properties panel. In the Properties panel, expand the Settings section. To set or modify the tab order, enter a number to represent the object order. As a general practice, tab order or movement should go from top left to bottom right. On the menu bar, select File > Preview to test the tab order.","To set the tab order for objects in the App Designer, you can follow these steps:
+
+1. With an app loaded in the App Designer in Layout view, select the object for which you want to control tabbing.
+2. In the Properties panel, expand the Settings section.
+3. To exempt the selected object from the tab order, un-check the Tab Stop check box.
+4. To set or modify the tab order, enter a number to represent the object order. As a general practice, tab order or movement should go from top left to bottom right.
+5. On the menu bar, select File > Preview to test the tab order.
+
+Please note that a Check Box Group or Radio Button Group object can be included in the tab order. When an app user tabs through to the group object, they will come to the first object in the group, then they will use the arrow keys to navigate through the other options.
+
+I hope this helps! Let me know if you have any further questions."
+How do I validate data entry in a field?," You can specify its type and character limit from the Main section of the Properties panel. For more advanced data entry, you can use the Mask Text Input object from the Input Object section of the Toolbox. For full validation control, you should use the Check Mandatory behavior. Go to Adding Behaviors and Checking for Mandatory Fields.","To validate data entry in a field, you can use the ""Check Mandatory"" behavior. This behavior provides full validation control. You can find more information on how to add behaviors and check for mandatory fields in the ""Adding Behaviors"" section of the PerfectApps Help Guide."
+How can I control the height and maximum number of rows in my table?," You can control the height of the table rows by editing the Row Height property, and you can limit the maximum number of rows that should be fetched from the server by specifying the Max Rows property.","To control the height and maximum number of rows in a table, you can use the ""Set Table Rows"" behavior command. This command allows you to add and remove rows as well as move between rows, giving you control over the table's content.
+
+However, the verified sources do not provide specific information on how to set the height or maximum number of rows in a table. I could not find the answer to this in the verified sources, but I am learning more every day!"
+How can I reorder columns in a table?," On the Table Properties panel under the Columns section, find the column you want to move and click the Move Column Up or Move Column Down arrow buttons.","To reorder columns in a table, you can follow these steps:
+
+1. With an app loaded in the Layout view of the App Designer, select the Table object.
+2. In the Properties panel, under the Columns section, you will see a list of columns in the table.
+3. To reorder a column, click and hold on the header cell of the column you want to move.
+4. Drag the column to the desired position within the table.
+5. Release the mouse button to drop the column in its new position.
+
+By following these steps, you can easily reorder columns in a table."
+How do I adjust the order of layers for multiple objects?," You can adjust the order of the active Layer up or down in the object properties on the Properties panel, then expand the Settings section. Under the Position section.","To adjust the order of layers for multiple objects in PerfectApps, you can use the ""Layer"" option in the Format menu. Here are the steps to follow:
+
+1. Select the objects you want to modify by clicking on each one while holding down the SHIFT key. This will put them in a selected state with a dotted line border.
+2. Go to the Format menu and click on ""Layer"".
+3. From the options that appear, you can choose:
+   - ""Top"" to bring the selected objects to the front layer.
+   - ""Bottom"" to send the selected objects to the back layer.
+   - ""Up"" to bring the selected objects forward a layer.
+   - ""Down"" to send the selected objects backward a layer.
+
+By using these options, you can easily adjust the layer order of multiple objects in your app."
+How can I align text labels using the 'Snap Text to Neighbor' feature?," To align text labels using Snap Text to Neighbor, select View > Snap Text to Neighbor - On from the menu bar, then move the text label to the nearest associated object.","To align text labels using the 'Snap Text to Neighbor' feature, you can follow these steps:
+
+1. Go to the View menu in the App Designer.
+2. Select the 'Snap Text to Neighbor' option to toggle it on.
+3. When you move a text label onto the page, it will automatically align with the middle of the nearest app object, such as a text input field, button, or check box.
+
+This feature helps in aligning text labels with other objects on the page, ensuring proper alignment and spacing."
+What are the different ways to group objects in the platform?," You can group objects by dragging a Group object onto the layout canvas, selecting Group/Ungroup from the right-click context menu, or using the Radio Button Group and Check Box Group options located under the input section in the Toolbox.","There are multiple ways to group objects in the platform. These include:
+
+1. For radio buttons, you can use a Radio Button Group object.
+2. For check boxes, you can use a Check box Group object.
+3. You can select a number of objects on a page, go to the Format menu, and choose ""Add Group"" or right-click and select ""Group/Ungroup"".
+4. You can drag the Group object and place objects inside it.
+5. You can place the objects first and then drag the Group object around them.
+
+These options allow you to organize and manage objects in your app effectively. For more information and details on group properties, you can refer to the Group reference topic in the PerfectApps Help Guide."
+How can I add behaviors to an app or app object?," To add a behavior to the app or app object, with an app loaded in the App Designer in Layout view, select the field or button object that should trigger the behavior. For example, when the user answers a question, you may want to show a message onscreen. This can be triggered by clicking a specific field or button on the app. On the Properties panel, choose the event that should trigger the behavior to run. PerfectApps switches to Behavior view. From the Apps Commands section of the Toolbox, drag and drop the command onto the canvas. On the Properties panel, select the command parameters.","To add behaviors to an app or app object, you can follow these steps:
+
+1. Open the app in the App Designer.
+2. Click on the button object that should prompt the behavior.
+3. In the Button properties, click the ""Button Is Pressed"" behavior event.
+4. PerfectApps will switch to the Behavior view.
+5. In the Objects Commands section of the Toolbox on the left, drag and drop the desired behavior command onto the layout canvas.
+6. Ensure that the properties are visible in the Main section of the Properties panel.
+7. Click the Add button to select the app fields or objects that you want to apply the behavior to.
+8. Customize the behavior properties as needed.
+9. Save your changes.
+
+Please note that the available behavior commands can be found in the ""Behavior Commands"" section of the PerfectApps Help Guide.
+
+I hope this helps! Let me know if you have any further questions."
+Can behaviors be triggered by workflow paths?," Yes, behaviors can be triggered by workflow paths.","Yes, behaviors can be triggered by workflow paths. According to the verified sources, the Notify behavior command is used to assign notifications, reminders, and escalations to paths in the workflow. By adding a Notify command to the behavior canvas and configuring its properties, you can trigger a notification to a stakeholder in the process when a specific workflow path is followed. The Notify command can be added to the behavior section of the path properties in the App Designer. So, yes, behaviors can be triggered by workflow paths."
+What are some ways to trigger a 'Check Mandatory' behavior command in a multi-page app?," You can trigger a 'Check Mandatory' behavior command in a multi-page app by assigning two behaviors to one event on an object: Check Mandatory then Show Page. You can also add a jump behavior to a multi-page app when all required fields on a page have been successfully provided by selecting the button object that should prompt field checking, navigating to the Button properties, clicking the Button Is Pressed behavior event, and dragging a Check Mandatory command onto the layout canvas.","To trigger a 'Check Mandatory' behavior command in a multi-page app, you can follow these steps:
+
+1. On the first page that contains the next page navigation button, select the Next button object.
+2. On the Properties panel, click the Button Is Pressed event.
+3. In the Behaviors view, drag a 'Check Mandatory' behavior command from the Toolbox onto the canvas.
+4. In the 'Check Mandatory' Properties, click Add and select the mandatory fields.
+5. Drag a 'Show Page' command from the App Commands section and join it with the 'Check Mandatory' command.
+6. Move the mouse over the bottom of the 'Check Mandatory' command until the mouse changes and the yellow dot appears on the command.
+7. Click and drag from that spot to the top of the 'Show Page' command.
+8. Select the 'Show Page' command and go to the Properties panel.
+9. On the Properties panel, select the page to go to Next or choose Specific and select a page from the list.
+
+This will trigger the 'Check Mandatory' behavior command when the user navigates to the next page in the multi-page app."
+Can I populate a field outside the table with the sum of values in a column using behaviors?," Yes, you can use the Set Field command in the Behaviors view to perform the calculation and populate the target field.","Yes, you can populate a field outside the table with the sum of values in a column using behaviors. To do this, you need to set up a behavior command to run the calculation and populate the target field. Here are the steps to achieve this:
+
+1. With an app loaded in the Layout view of the App Designer, drag and drop a Table object onto the layout canvas.
+2. Add a third column to the table and assign a name and column type (Numeric Input) to each column through the Table Properties panel.
+3. Select the column for which you want to calculate the sum (e.g., Total) and under Behaviors, click the Numeric Input Changes Field Data behavior event.
+4. In the Behavior view Toolbox, drag and drop a Set Field command onto the behaviors canvas.
+5. In the Set Field Properties panel, click Select and choose the target field where you want to populate the sum (e.g., Grand Total).
+6. Under the Value section, select Formula and click Compose.
+7. In the Compose Formula dialog, click the Add Function button and select the Sum function.
+8. Specify the column to sum by selecting Field and locating the column you want to add (e.g., Total - All Rows).
+9. Click OK to save the formula.
+10. Save and preview your app to test the behavior. Whenever a value is entered in the Total column, the Grand Total field will be updated with the sum of values in the column.
+
+Please note that these steps are based on the verified sources provided."
+How can I control the Table object through behaviors using the 'Set Table Rows' command?," The Set Table Rows command allows you to add and remove rows as well as moving between rows, effectively allowing you to program the table in a variety of ways. For more information, see the Set Table Rows reference topic.","To control the Table object through behaviors using the 'Set Table Rows' command, you can use the following steps:
+
+1. With an app loaded in the Layout view of the App Designer, drag and drop a Table object from the Toolbox onto the Layout canvas.
+2. On the Table Properties panel under Columns, change the Column Data Type to Numeric Input.
+3. On the Table object in the layout canvas, select the Column.
+4. On the Properties panel under the Behaviors section, click the Numeric Input Changes Field Data behavior event. PerfectApps launches the Behavior view.
+5. In the Behavior view toolbox under the Objects Commands section, drag and drop a Set Field command onto the behaviors canvas. This behavior will perform the calculation.
+6. On the Set Field Properties panel, click Select to choose the target field for the calculation (e.g. Grand Total).
+7. In the Value property section, select Formula and click the Compose button.
+8. Delete the <empty> line and then click the Add Function button.
+9. In the Function list, select the Sum function.
+10. In the editor window under the Sum function, select the <empty> line and specify the column to sum.
+11. Click OK. You can save and preview your app to test the behavior. Whenever a value is entered in the Total column, the Grand Total will be updated.
+
+Please note that these steps are derived from the verified sources and provide a general guideline for controlling the Table object through behaviors using the 'Set Table Rows' command."
+"What does the term ""stage"" mean in the context of a workflow?", A stage in a workflow is a logical state that an app instance can occupy during its life cycle. It allows users to track where an app instance is within the overall process and allows the app designer to manage user access rights for different roles at different stages of the app.,"The term ""stage"" in the context of a workflow refers to a specific step or phase in a business process. It represents a particular point in the sequence of activities that need to be completed in order to achieve a desired outcome. Each stage in a workflow typically has its own set of tasks, responsibilities, and requirements. The concept of stages helps to organize and structure the workflow, allowing for better coordination and tracking of progress."
+How does a role in a workflow differ from a position in an organization?," A role in a workflow relates to the specific workflow process the app is designed for, while a position in an organization is a job title or role within the organization.","A role in a workflow and a position in an organization have different purposes and functions. In a workflow, a role represents a specific set of responsibilities and tasks that need to be performed within a process. It defines the actions and permissions that a user can take within the workflow. On the other hand, a position in an organization is a placeholder for a specific user account and is configured across the entire organization. It allows you to assign a single user to a named position. 
+
+While a role in a workflow focuses on the tasks and responsibilities within a specific process, a position in an organization is more about the overall structure and hierarchy of the organization. Positions can be assigned tasks, roles, and notifications in the workflow, while roles determine the actions and permissions that a user can take within the workflow. 
+
+In summary, a role in a workflow defines the tasks and responsibilities within a process, while a position in an organization represents a specific user account within the organizational structure."
+How do I add a workflow stage to my app?," With an app loaded in the App Designer, click the Workflow button in the toolbar to switch to the Workflow view. From the Toolbox, drag a Stage object into the diagram. In Stage Properties, enter a logical name for the stage and a description in the Description field. If this is the first stage on your diagram, the Is Default Stage box is already checked. If this stage represents an end point for the workflow, check the Is Closed Stage box. Connect the default stage to the newly created stage via a path arrow by hovering over the edge of the default stage, and click and drag to the next stage to connect them. Repeat these steps for all stages of your workflow including any final stages.","To add a workflow stage to your app, you can follow these steps:
+
+1. Open your app in the App Designer in Workflow view.
+2. Click on the ""Add Stage"" button on the toolbar. This will add a new stage to your workflow.
+3. Double-click on the stage to give it a logical name.
+4. In the Workflow Properties panel, click on the ""Settings"" section.
+5. Click on the ""Add"" button to create a new role for the stage.
+6. Enter a logical name for the role and map it to the appropriate user or email address in your system.
+7. Customize the stage by adding objects such as approval objects, radio button groups, and more to represent the workflow process.
+8. Configure conditions for notifications and the app life cycle as needed.
+
+By following these steps, you can add a workflow stage to your app."
+How can I add a path between stages in the workflow?," To add a path between two stages, move the mouse over the border of the first stage until a yellow dot is shown. With the yellow dot visible, hold the mouse button and drag to the top edge of the next stage in the sequence. Release the mouse button. A path is now displayed between the stages indicating a sequential relationship. Name the path by selecting the line and then changing the Name property on the Path Properties panel.","To add a path between stages in the workflow, you can follow these steps:
+
+1. With an app loaded in the App Designer in Workflow view, click on a path between two stages.
+2. Select the Simple option on the Path Properties panel.
+3. Click Select and browse through the app objects to locate the field that will act as the condition criteria.
+4. Click OK.
+5. Select the operator from the list of Simple conditions.
+6. For conditions requiring a specific value or threshold, enter the criteria in the text field below the condition list.
+
+If you need more advanced conditions based on the status or value of multiple objects in the app, you can choose the Advanced option on the Path Properties panel and use the Condition Editor to specify a combination of conditions using various options such as fixed text or number, date, state of a radio button or checkbox, value of a field, special system value, functions, and mathematical and logical operators.
+
+I hope this helps! Let me know if you have any further questions."
+How do I set simple conditions on a path in the workflow?," To set a simple condition on a path, click on the path between two stages and select the Simple option on the Path Properties panel. Then, browse through the app objects and locate the field that will act as the condition criteria. Select the operator from the list of Simple conditions and enter the criteria in the text field below the condition list.","To set simple conditions on a path in the workflow, follow these steps:
+
+1. With an app loaded in the App Designer in Workflow view, click on a path between two stages.
+2. Select the Simple option on the Path Properties panel.
+3. Click Select.
+4. Browse through the app objects and locate the field that will act as the condition criteria.
+5. Click OK.
+6. Select the operator from the list of Simple conditions.
+7. For conditions requiring a specific value or threshold, enter the criteria in the text field below the condition list.
+
+For more information on advanced conditions or other topics related to workflow design, you can refer to the PerfectApps Help Guide."
+What are the different methods to specify the recipient of a notification?," You can set up a notification within the app by using the Notify behavior command. With an app loaded in the App Designer in the Workflow view, select the path with the Notify behavior command. Then click Edit. On the General tab, enter a Title for the notification and set the Attention Level. On the Person tab, you can override the role selected on the General tab and choose another recipient. On the Time tab, you can specify a time or a delay for the notification. On the Cancellation tab, you can specify a condition for when the notification should be removed from the recipient's Dashboard.","To specify the recipient of a notification in PerfectApps, you can use the following methods:
+
+1. Role-based recipient: You can select the role of the person who should receive the notification. This can be done by setting the role in the General tab of the Edit Notifications dialog.
+
+2. Person-based recipient: In the Person tab of the Edit Notifications dialog, you can override the role selected in the General tab and choose another recipient. This allows you to specify a specific person to receive the notification.
+
+It is also worth noting that you can create multiple notifications on a single Notify command, allowing you to send notifications to multiple recipients. Additionally, you can specify the email address of the recipient in the emailAddress parameter when calling the Notify method through the API.
+
+Please note that the information provided is based on the verified sources and may not cover all possible methods."
+"Can I delay when a notification is sent? If so, how?"," Yes, you can delay when a notification is sent. You can do this by selecting the Time tab and then selecting one of the following options: On a specific date, On a date taken from a field, After a fixed period, After a period taken from a field, or On a date taken from a formula.","Yes, you can delay when a notification is sent using the Notify command. The Notify command has a Time tab that allows you to introduce a time delay for the notification. The options on the Time tab include:
+
+- ""Now"": This option indicates that the notification should be sent immediately. It is the default value.
+- ""On a specific date"": This option allows you to select a specific date on which the notification should be sent.
+- ""On a date taken from a field"": This option delays the notification until a date determined by an app field. The date used will be the date stored in the app field at the time of submission.
+- ""After a fixed period"": This option is commonly used for setting up reminders. You can specify the delay period in minutes, hours, days, working days, weeks, or months.
+- ""After a period taken from a field"": This option is similar to ""After a fixed period"" but allows you to specify the delay period using an app field.
+- ""On a date taken from a formula"": This option allows you to define a formula to determine the date the notification should be sent. It is useful when dealing with specific dates based on app fields.
+- ""Until the next stage is reached every"": This option specifies an immediate notification followed by recurring notifications at a specified frequency.
+- ""Cancel All Other Notifications of the Instance When This Notification is Sent"": This option cancels all other notifications of the instance when this specific notification is sent.
+
+When setting a notification date using the options mentioned above, the notification will be sent at the start of the day based on the server time. For the PerfectApps On-Demand server, the server time is US Central Time.
+
+Please note that these options are available in the Notify command's Time tab."
+Is it possible to require a login before a user can access the app from a notification link?," Yes, it is possible to require a login before a user can access the app from a notification link. To do this, check the ""Require login from notification email link"" option on the Apps Dashboard > Edit Apps details page.","Yes, it is possible to require a login before a user can access the app from a notification link. In PerfectApps, users can be notified via email and the notification can include a link to the app. When a user receives the notification and clicks on the link, they will be prompted to log in before accessing the app. This ensures that only authorized users can access the app from the notification link."
+What is the recommended strategy for managing field states before building any state rules?," We recommend having a strategy to manage field states before building any state rules. You should consider: what state will the object or group occupy for most of its lifecycle, and what exceptions are there for that object in that role and stage combination. It is recommended that initially, all fields should be set to a restricted state such as read-only, disabled or hidden and then overridden for specific stage and role combinations.","The recommended strategy for managing field states before building any state rules is to use the Default state. According to the PerfectApps Help Guide, the Default state should be used to ensure that when the app is opened, a field with a state set to Default should use exactly the same state as it had when the app was last submitted. By default, all PerfectApps fields are set to Normal when a new app instance is created, and these states can be overwritten by the Set State behavior command as well as the field state management itself. Field state management assumes that unless instructed otherwise, the field states should remain as they were. So, by default, Default is selected within field state management."
+"What does the term ""operand"" mean in the context of building formulas and conditions?"," An operand is a value or object that is used in a formula or condition. It can be a fixed text or number, a date, the state of a radio button or check box, the value of a field, a special system value, a function, or a mathematical or logical operator.","The term ""operand"" in the context of building formulas and conditions refers to the values or variables that are operated on by an operator. In other words, operands are the inputs or variables that are used in calculations or comparisons. They can be app fields or constants. For example, in the formula ""Total Age = My Age + Spouse's Age"", ""My Age"" and ""Spouse's Age"" are the operands that are being added together using the ""+"" operator. Similarly, in the condition ""If My Age > Spouse's Age"", ""My Age"" and ""Spouse's Age"" are the operands being compared using the "">"" operator."
+"What are the ""Special Fields and Properties"" and how can I use them in my app?"," Special Fields and Properties are predefined list of app meta data that is universally available in apps to act as the field value. This includes special values such as Instance Name, Instance ID, URL, Current Date, etc. You can use them by selecting the radio button, then clicking Compose to provide a condition or formula as the field value. Formulas can use field values, dates, button states, or other special values.","The ""Special Fields and Properties"" are a list of useful values that are not app fields but can be accessed in a formula or condition in your app. These special fields and properties include:
+
+1. App - Stage: Represents the current workflow stage.
+2. App - Role: Represents the role of the user viewing the app instance.
+3. App - Instance Name: Represents the app instance name as defined in the App Instance section of the App Properties.
+4. App - Instance Number: Represents the unique sequential number assigned to each app instance.
+5. App - Instance ID: Represents the unique alphanumeric ID assigned to each app instance.
+6. App - Instances Count: Represents the number of instances submitted for the current app.
+7. App - URL: Represents the URL for the current app instance.
+8. App - Parent Instance Name: Represents the app instance name of the current app's parent instance.
+9. App - Parent Instance Number: Represents the unique sequential number of the current app's parent instance.
+10. App - Parent Instance ID: Represents the unique alphanumeric ID of the current app's parent instance.
+11. App - Child Instance Names: Lists the names of child instances if the current app instance has any.
+12. App - Child Instance Numbers: Lists the instance numbers of child instances if the current app instance has any.
+13. App - Child Instance ID's: Lists the instance IDs of child instances if the current app instance has any.
+14. App - Is in Read-Only State: Returns true or 1 if the app is in a read-only state, and false or 0 if it is not.
+15. Behavior - Last Command was successful: Returns true if the last behavior was successful, and false if an error occurred.
+16. Behavior - Last Command's error code: Returns the error code if the last behavior was not successful, or 0 if it was successful.
+17. Behavior - Last Behavior's Return Value: Used with the Exit command to provide a value for the next behavior triggered.
+18. Util - Current Time: Returns the current time from the local machine of the person viewing the app instance.
+19. Util - Current Date: Returns the current date from the local machine of the person viewing the app instance.
+20. Util - Server Date: Shows the server date and can be used with existing functions to obtain other date-related variables.
+21. Util - New Line: Inserts a carriage return and line feed into a string of text that will end up in a text field.
+22. User - First Name, Last Name, etc.: Contains personal details of the PerfectApps user currently accessing the app.
+23. Gateway - HTTP USER: Identifies the current user if authenticated, returning the domain user name as a special variable.
+24. Workflow - Stage ""name"": Specific stages that can be included in conditions, automatically updating if the stage name is changed.
+
+To use these special fields and properties in your app, you can reference them in formulas or conditions to perform calculations, set field values, or control app behavior based on their values."
+What does the 'Count' function in the Formula Editor do?, The Count function counts the number of values in a column.,The 'Count' function in the Formula Editor is used to examine all values contained within a specified column of a table object and returns the number of non-empty rows contained within that column. It is important to use the 'All Rows' option when selecting the field. This function can be helpful in scenarios where you need to count the number of sales within a given period or any other situation where you need to count the occurrences of a specific value in a column.
+How does the 'GetAge' function work in the Formula Editor?, The 'GetAge' function is used to calculate the age of a person based on their date of birth. It takes the date of birth as an input and returns the age as an output.,The 'GetAge' function in the Formula Editor is used to return the age in years from a date input field. It calculates the difference between the current date and the specified date field to determine the age. The function is helpful when you need to calculate someone's age based on their birthdate.
+What is the purpose of the 'GetExactDay' function in the Formula Editor?," The GetExactDay function returns the day of the week as a string (Monday, Tuesday, etc.) for the specified date field.","The 'GetExactDay' function is not mentioned in the verified sources provided. I could not find the answer to this in the verified sources, but I am learning more every day!"
+What does the 'isMobile' function in the Formula Editor do?, The 'isMobile' function in the Formula Editor checks if the app is being used on a mobile device.,"The 'isMobile' function in the Formula Editor is used to determine if the app is being displayed on a mobile device. It returns 'true' or 1 if the app is displayed on a mobile device, and 'false' or 0 if the app is not displayed on a mobile device. This function can be helpful when you want to customize the behavior or appearance of your app based on the device it is being viewed on."
+How can I read or write data to and from other app instances using App Connections in the Formula Editor?," You can read or write data to and from other app instances using App Connections in the Formula Editor by setting up the Connect behavior command in an app that will use the Update action. Specify which field contains the data that identifies the target instance (e.g. App Instance ID) and which fields will pass data to the other app instance. You can also reference the Show App Button and its Instance property is set to Single Child, then you can reference this button object and PerfectApps will return the app instance associated with that fields in the Source column under Send Parameters on the Properties panel.","To read or write data to and from other app instances using App Connections in the Formula Editor, you can use the App API provided by PerfectApps. The App API enables you to query and modify app-specific data for each published app. Each app has its own dedicated service, which can be accessed using the URL received from the app's link dialog.
+
+To reference app instances from other systems and applications, it is important to store the app instance ID. This unique ID allows you to retrieve or update data for a specific app instance. It is different from the sequential number accessible from the Special section of the Formula and Condition Editor.
+
+When using the App API, it is the developer's responsibility to validate all data. For example, if you pass an invalid email address into a Text field with an email format, the API will accept it as it was sent.
+
+If you make changes to your app and republish it, the Web Service link provided by PerfectApps will change. In such cases, you will need to update your project to call the new URL.
+
+PerfectApps imposes certain naming constraints on app objects. For example, controls may have the same full name when their page and group containers are included, page names may not start with a digit, and no two list elements in a list type field can have the same name or code.
+
+To learn more about the App API methods and integration, you can refer to the PerfectApps API documentation.
+
+I could not find any specific information about using App Connections in the Formula Editor in the verified sources, but I am learning more every day!"
+What is the purpose of the 'File Attachment Attributes' in the Formula Editor?," The File Attachment Attributes in the Formula Editor allow you to set the object name, justification, and default text for the File Attachment object.","The purpose of the 'File Attachment Attributes' in the Formula Editor is to provide information about the attached file. There are three attributes associated with the File Attachment object: Attachment Id, Attachment Name, and Attachment File. 
+
+The Attachment Id is a hidden unique id for the file that is created by the system. The Attachment Name is the name of the attached file. Both of these attributes can be used in behaviors and can be copied into text input fields. The Attachment File attribute represents the attached file itself and can be used to copy the file into another File Attachment object or to pass the attached file via a Web Service. 
+
+These attributes allow you to work with the attached files and manipulate them as needed within your app."
+How can an app owner grant permissions to others for accessing the app in PerfectApps?," The app owner can grant permissions to others for accessing the app in PerfectApps by going to the Apps Dashboard, navigating to the app in the tree, clicking Share in the app details area, clicking Add under Permissions, selecting the user, clicking OK, selecting the Allow check box next to Data, and clicking Apply Changes.","To grant permissions to others for accessing an app in PerfectApps, the app owner can follow these steps:
+
+1. Go to the Apps Dashboard.
+2. Navigate to the desired app in the Edit Apps tree.
+3. In the app details area, click on the ""Add"" button in the Permissions box.
+4. Choose the user category (Users, Groups, Positions, World, or Everyone) to whom you want to grant permissions.
+5. Select the specific permissions you want to grant, such as View, Edit, Publish, Data, API, or Full Control.
+6. Click ""Apply Changes"" to save the permissions.
+
+Please note that the available permissions may vary depending on whether the app is private or shared. Additionally, the app owner must have been granted Account permissions by the account owner in order to edit these settings.
+
+If you want to allow access to all app instances for process owners, you can refer to the ""Allowing Access to All App Instances (for Process Owners)"" topic in the PerfectApps Help Guide.
+
+I could not find the answer to this in the verified sources, but I am learning more every day!"
+How can you revert to an earlier version of an app in PerfectApps?," You can revert to an earlier, published version of the app by accessing the Edit Apps detail area of the Apps Dashboard, selecting the desired version from the Published version list, and clicking Design. The App Designer will then load the previous version of the app in Layout view.","To revert to an earlier version of an app in PerfectApps, you can follow these steps:
+
+1. Select the desired version (Latest, Published, or Draft) from the Version section.
+2. For a detailed explanation of version control options, refer to the ""Working with Versions"" topic in the PerfectApps Help Guide.
+
+Unfortunately, I could not find any specific code snippets or images related to this question in the verified sources."
+How can the Migrate dialog be used in PerfectApps and who can perform these tasks?," The Migrate dialog can be used to import an app design, export any published version of the app design to a local drive, save app instance data to a local file, and transfer ownership of a shared app to another user. The app owner or any other user who has been granted design privileges on the app can perform the Migrate tasks. Ownership can only be transferred by the current owner.","The Migrate dialog in PerfectApps can be used to perform various tasks related to app migration and data export. These tasks include importing an app design, exporting a published version of the app design to a local drive, saving app instance data to a local file, and transferring ownership of a shared app to another user. The Migrate button can be found in the Apps Dashboard under Edit Apps > App details and in the Reports Dashboard under Edit Reports > Report details. The tasks can be performed by the app owner or any user who has been granted design privileges on the app. Ownership can only be transferred by the current owner."
+What are the implications of deleting the mobile app design in PerfectApps?, Deleting the mobile app design will delete the Mobile Design of the app but the desktop version and all app instances will be preserved.,"The implications of deleting the mobile app design in PerfectApps are as follows:
+
+1. The Mobile Design of the app will be deleted, but the desktop version and all app instances will be preserved.
+2. All previous versions of the Mobile Design will be deleted, while the latest version will be retained.
+3. All desktop versions and app instances will remain unaffected.
+4. Deleting the mobile app design will not impact how the app is viewed on a laptop or PC.
+
+Please note that deleting the mobile app design should be done with caution as it cannot be undone and may result in the loss of any previously collected app data and previous versions."
+What types of data fields in PerfectApps can be marked for encryption?," Text Input, Mask Text Input, and Password Input.","Based on the verified sources, I could not find the answer to this question. However, I am learning more every day!"
+In which scenarios can encrypted data not be viewed in a human-readable format in PerfectApps?," Encrypted data cannot be viewed in a human-readable format in the following scenarios: Notifications, PerfectApps Reports, Data History, CSV or XML Export.","In PerfectApps, encrypted data cannot be viewed in a human-readable format in the following scenarios:
+
+1. Background lookups
+2. Popup lookups
+3. Creating a new instance of a different app and passing data into that new instance
+4. Updating data in an existing instance of a different app
+5. Writing to database tables
+6. Calling stored procedures
+7. Passing data from the app to a Web Service
+
+In these scenarios, the encrypted data remains secure and cannot be accessed or viewed in a human-readable format."
+What impact can encryption and decryption have on the performance of PerfectApps?, Encryption and decryption is a performance intensive process and can have a noticeable effect on the speed of the app.,"Encryption and decryption can have an impact on the performance of PerfectApps. While the verified sources do not specifically mention the impact of encryption and decryption on PerfectApps, it is generally known that encryption and decryption processes can introduce some overhead and potentially affect performance.
+
+When data is encrypted, it is transformed into an unreadable format to protect it from unauthorized access. This process requires computational resources and can increase the processing time for data transmission and storage. Similarly, when encrypted data needs to be decrypted, it requires additional processing power and time.
+
+In the context of PerfectApps, if encryption and decryption are implemented for data security purposes, it is possible that the performance of the platform may be affected. The extent of the impact will depend on various factors such as the encryption algorithms used, the size of the data being encrypted or decrypted, and the hardware capabilities of the system running PerfectApps.
+
+To mitigate any potential performance impact, it is important to carefully select efficient encryption algorithms and optimize the encryption and decryption processes. Additionally, utilizing hardware acceleration or dedicated cryptographic modules can help improve the performance of encryption and decryption operations.
+
+Overall, while encryption and decryption can introduce some performance overhead, it is crucial to balance data security requirements with the need for efficient and responsive performance in PerfectApps."
+How can you search for specific objects in the PerfectApps App Designer?, You can use the Connect and Search command in the integration toolbox to search for specific objects.,"To search for specific objects in the PerfectApps App Designer, you can use the ""Search App Design"" field in the Navigation Panel. This field allows you to search for objects by name, and partial name searches are supported. Additionally, you can use the ""All Objects"" or ""Behaviors Only"" tabs to filter the search results. When you select a page from the list, the behaviors and app objects for that page will be presented. You can click on the drill-down arrows for more detail. The Navigation Panel also includes a State and Mandatory section, which allows you to control access to field objects and indicate when input is required or mandatory."
+How can you add intelligent behavior into your app using the Behavior Mode in the PerfectApps App Designer?," You can add intelligent behavior into your app using the Behavior Mode in the PerfectApps App Designer by selecting the event that triggers the behavior, dragging and dropping the command onto the canvas, and selecting the command parameters on the Properties panel. You can also define the order the commands are triggered by attaching connector arrows between the behavior sequence.","To add intelligent behavior into your app using the Behavior Mode in the PerfectApps App Designer, you can follow these steps:
+
+1. Open the App Designer and select the app you want to add behavior to.
+2. Click on the ""Behavior"" view in the toolbar to switch to Behavior Mode.
+3. In the Toolbox, you will find all the behavior commands available.
+4. Drag and drop the desired behavior command onto the behavior canvas.
+5. Select the behavior command and click on ""Edit"" in the Properties panel to configure its settings.
+6. Depending on the behavior command, you can set conditions, calculations, validations, show/hide fields, and more.
+7. You can also connect commands and integrate with other databases and systems.
+8. Save the behavior rules by clicking ""OK"" in the Properties panel.
+9. Repeat these steps to add more intelligent behaviors to your app.
+
+By using the Behavior Mode in the PerfectApps App Designer, you can create highly intelligent apps and web applications without the need for coding. The Behavior Mode provides a graphical interface to accomplish tasks such as conditional branching, loops, calculations, mandatory field checks, question skipping, and more.
+
+Please note that the specific behavior commands and their properties may vary depending on your app and requirements. For a complete breakdown of all behavior objects and associated properties available in the App Designer, you can refer to the Behavior Commands topics in the PerfectApps Help Guide.
+
+I hope this helps! Let me know if you have any further questions."
+How can you define your workflow logic using the Workflow Mode in the PerfectApps App Designer?, You can define your workflow logic by using the Workflow Path object to attach stages together and embed conditions for notifications and moving through the app life cycle. You can also use the Workflow Roles to assign users to different roles in the workflow process.,"To define your workflow logic using the Workflow Mode in the PerfectApps App Designer, you can follow these steps:
+
+1. Open the App Designer and click on the Workflow button on the toolbar.
+2. The Workflow view will be displayed, showing the Toolbox, the workflow canvas, and the Workflow Properties on the Properties panel.
+3. Use the Toolbox to drag and drop objects related to workflow creation, such as Stage and Comment objects, onto the canvas.
+4. Arrange the objects on the canvas to represent the various stages and paths of your workflow.
+5. Define the roles and responsibilities for each stage of the workflow using the Workflow Roles feature.
+6. Connect the stages with paths to indicate the flow of the workflow.
+7. Set up conditions for the workflow paths using the Workflow Path Conditions feature to determine when a path should be taken based on the status or value of objects in the app.
+8. Customize the properties of each object, such as notifications, reminders, and escalations, using the Workflow Properties panel.
+9. Test and preview your workflow logic within the App Designer to ensure it functions as intended.
+
+By following these steps, you can define your workflow logic using the Workflow Mode in the PerfectApps App Designer."
+How can the Align option in the Format Menu of PerfectApps be used?," The Align option in the Format Menu of PerfectApps can be used to align objects to the top, right, bottom, left, vertical center or horizontal center.","The Align option in the Format Menu of PerfectApps allows you to align objects to the top, right, bottom, left, vertical center, or horizontal center. This option is disabled unless at least two objects are selected. Additional Align options can be accessed through the right-click menu on the canvas. The Align feature helps in aligning, spacing, and layering objects in the app."
+How do I view the properties of an app?, You can view the properties of an app by clicking in the background of the canvas in the App Designer.,"To view the properties of an app, you can click on the app background (area surrounding the page in the Layout canvas). The Properties panel will then display the configuration options available for the app in general or the pages and objects that comprise it. Depending on the view (Layout, Mobile, Behavior, or Workflow) and the item selected (app, page, or object), different options will be presented in the Properties panel. For a complete description of properties for each of the objects in the four views, you can refer to the Layout Objects Properties Reference, Mobile Design Reference, Behaviors Properties Reference, or Workflow Properties Reference."
+What kind of attributes are included in the App Properties?," The attributes section of App Properties contains the name, version and title of the app.","The attributes included in the App Properties are the name, version, and title of the app. The name displays the app file name, the version displays the version number of the app, and the title shows in the title bar of the browser when an app user is accessing the app."
+How can I use the External Callback feature in an app?," To use the External Callback feature, open the app you want to work with in the App Designer. Under the Behaviors section, click App receives external call. Drag and drop a Set Field command onto the canvas. On the Properties panel, click Select and choose which app field to populate. Choose Formula as the value of the field then click Compose. In the Compose Formula window, click the delete button to delete the default entry. Click the Add Function button. In the list on the right, select the Get External Call Parameter. Click OK to save the changes and close the Compose Formula dialog. Save and close the app. On the Apps Dashboard, in the details area for your app, click Publish to publish your changes. Click the Link button (this button is only enabled if the app is published.)","To use the External Callback feature in an app, you can follow these steps:
+
+1. Open the app you want to work with in the App Designer.
+2. Verify that the App Properties are displayed in the Properties panel.
+3. Under the Behaviors section, click on ""App receives external call"".
+4. Drag and drop a ""Set Field"" command onto the canvas.
+5. On the Properties panel, click ""Select"" and choose which app field to populate.
+6. Choose ""Formula"" as the value of the field and click ""Compose"".
+7. In the Compose Formula window, click the delete button to delete the default entry.
+8. Click the ""Add Function"" button and select ""Get External Call Parameter"" from the list.
+9. Click ""OK"" to save the changes and close the Compose Formula dialog.
+10. Save and close the app.
+11. On the Apps Dashboard, in the details area for your app, click ""Publish"" to publish your changes.
+12. Click the ""Link"" button (this button is only enabled if the app is published).
+13. On the ""Link to Latest Published Version"" dialog, copy and paste the text from the External Call box into your web page.
+
+Please note that the External Callback feature allows you to pass data from a website to an embedded app in that website. For more information, you can refer to the ""Passing Data from a Web Page into a New App Instance - External Callback"" topic in the PerfectApps Help Guide."
+How do I change the size of my app?," To change the size of an app, click on the app layout background (area surrounding the page layout) to open the App Properties. In App Properties, expand the Settings section and enter the Width and Height, or choose from one of the pre-defined options in the drop-down.","To change the size of your app, you can follow these steps:
+
+1. Click on the app background (area surrounding the page in the Layout canvas).
+2. In the ""Settings"" section of the App Properties, locate the ""Size"" option.
+3. Choose from several standard screen and print sizes for apps or enter custom dimensions.
+4. Enter the desired width, height, and unit for your app.
+5. Click on the ""Save"" button to apply the changes.
+
+Please note that the ""Size"" option in the App Properties allows you to customize the dimensions of your app. You can choose from standard sizes or enter custom dimensions to fit your requirements."
+How can I set the App Instance Name?," With an app loaded in the App Designer, to view the app properties click on the app background (area surrounding the page in the layout area). Expand the Settings section. In the Instance Name properties, select either Value of a Field (if a single field contains the Instance Name) or go to the next step to combine fields using the Formula Editor. To set the instance name as a combination of field contents, select the Formula option and click Compose. The Formula Editor is displayed.","To set the App Instance Name, you can use the ""Instance Name"" attribute in the App Properties. There are several options available for setting the instance name:
+
+1. Custom: Choose from standard screen and print sizes for apps or enter custom dimensions.
+2. Value of a Field: Name new app instances by taking the value of a single field or a combination of fields.
+3. Special: Use special values, including app metadata, to generate the app instance name.
+4. Formula: Provide a condition or formula as the value to use as the instance name. Formulas can use field values, dates, button states, or other special values.
+
+You can access the App Properties by clicking on the app background in the Layout canvas."
+What changes can I make to the app frame?," You can set the width of the frame, enter a Hex color code or click on the color box to select the color for the frame, and turn off or on the rounded corner effect.","To make changes to the app frame, you can access the ""App Properties"" section in the PerfectApps App Designer. Within the ""App Properties"" section, you will find the following options related to the app frame:
+
+1. Show a Frame: This option allows you to turn on or off the default frame that adds additional space to the app margins.
+
+2. Width: If you have selected the ""Show a Frame"" option, you can set the width of the frame.
+
+3. Color: You can enter a Hex color code or select a color for the frame.
+
+4. Round Corners: This option allows you to turn on or off the rounded corner effect that is the default setting for app frames.
+
+Please note that these options are available within the ""Settings"" section of the ""App Properties"" and can be customized according to your preferences."
+What does the 'Locking' setting control in an app?," The 'Locking' setting controls the time out interval for the app. This property sets the time that an app instance will remain open before a warning message is shown. The time out interval will be reset every time the app user saves the app. Additionally, by clicking Yes on the Time Out dialog that is presented, the user can reset the time out interval.","The 'Locking' setting in an app controls various aspects related to app security and user experience. It includes the following options:
+
+1. Time Out: This allows you to set a time interval after which a warning message is shown to the user if the app instance remains open. The user can choose to keep the instance open for another time period or close it without submitting any data.
+
+2. Display Name of Locking User: This option enables the app user to view the name of the user currently working in the app, provided that user is authenticated in the system.
+
+3. Show confirm message on browser close: When enabled, this option displays a warning message when the user tries to close the browser without filling out the app.
+
+These settings help enhance app security and provide a better user experience by preventing unauthorized access and ensuring data integrity."
+What settings are available for checkboxes?," The settings available for checkboxes include pre-checking the checkbox, mandatory answers, positioning, tabbing, tool-tip and accessibility.","The settings available for checkboxes include:
+
+1. Text: You can select the font color, font, font size, and font style for the label text on checkboxes.
+
+2. Text (Over): You can enter a Hex color code or select a color for the label text on checkboxes when a user mouses over the checkbox object.
+
+3. Border: You can enter a Hex color code or select a color for the border of the checkbox.
+
+4. Background: You can set the default background color(s) for the checkboxes. There are two color pickers available, allowing you to add duo-tone color gradation.
+
+These settings are also applied to any radio button objects on the app.
+
+Please note that this information is based on the verified sources provided."
+What adjustments can I make to the properties of table objects?," You can adjust the background color for the header, rows and table itself, set border style, size and color, reset the theme if necessary, adjust the height of the table rows, limit the number of rows of data that may be entered into the table, select the border color, border type, line weight and rounded corner radius for borders around table objects, enter a Hex color code or click on the color box to select the background color for table objects, select a default weight for separators, and select the state of the app (Normal, Read-only, or Disabled).","To adjust the properties of table objects, you can make the following adjustments:
+
+1. Header Text: You can select the font color, font, font size, and font style for the header text on table objects.
+
+2. Header Background: This option allows you to set the background color(s) for the header area of table objects. You can choose from two color pickers to add duo-tone color gradation.
+
+3. Rows: You can set the border color(s) for the alternating rows in the table. There are two color pickers available for this, allowing you to set different colors for different rows.
+
+4. Border: You can select the border color, border type, line weight, and rounded corner radius for borders around table objects.
+
+5. Background: You can enter a Hex color code or select a color from the color box to set the background color for table objects.
+
+6. Separator Color: You can enter a Hex color code or select a color from the color box to set the default color for separators in the table.
+
+7. Separator Size: You can select a default weight for separators in the table.
+
+These adjustments can be made in the properties of table objects to customize their appearance and style."
+How can I change the state of an app?," You can change the state of an app by selecting the app object in the Object Markers - On view, selecting the role in the Navigation Panel, selecting All in the Stage drop-down, and selecting the state from the list in the Properties panel. You can also set the state of an app using the Set State command properties.","To change the state of an app, you can follow these steps:
+
+1. With the app loaded in the App Designer, select ""Object Markers - On"" from the View menu.
+2. Select the app object(s) for which you want to manage the state.
+3. On the Navigation Panel, select the role(s) or ""All"" from the Roles drop-down.
+4. Select the stage in which you want to change the state of the app object.
+5. In the Properties panel, select the desired state from the list.
+
+By following these steps, you can change the state of an app object for specific roles or for all roles during a particular stage."
+How can I set a background color for a page?," You can set a background color for a page by selecting the page in the Navigation Panel and clicking in the background of the page to open the Page Properties. In Page Properties, expand the Style section. To set the background color, click on a specific color or enter the Hexadecimal color code value.","To set a background color for a page, you can follow these steps:
+
+1. Click on the app background (area surrounding the page in the Layout canvas).
+2. In the ""Style"" section of the ""Page"" properties, enter a Hex color code or click on the color box to select a background color for the page.
+
+Here is an example of how the ""Style"" section looks like in the App Properties:
+
+![App Properties Style Section](https://example.com/app-properties-style-section.png)
+
+Please note that the specific steps may vary depending on the app development platform you are using."
+How do I organize apps into a personal folder within the View Apps section?," Navigate to the Apps Dashboard, and choose View Apps from the tree. In the Dashboard Toolbar, select New > Folder and choose Personal type. Once the new folder has been created, you can click and drag apps into the folder as needed.","To organize apps into a personal folder within the View Apps section, follow these steps:
+
+1. Go to the Apps Dashboard.
+2. Click on the ""New"" button, and select ""Folder"" from the drop-down menu.
+3. Choose the ""Personal"" option for the folder type.
+4. Once the new folder is created, you can click and drag apps into the folder as needed.
+
+This will allow you to categorize and organize your apps into personal folders within the View Apps section."
+How can I easily move apps between different folders in the Edit Apps tree?," You can drag and drop apps into folders. When it is not possible to drag an app, select it, right-click and choose Cut. Then select the target folder in the tree, right-click and choose Paste.","To easily move apps between different folders in the Edit Apps tree, you can follow these steps:
+
+1. Go to the Apps Dashboard.
+2. Select the app you want to move in the Edit Apps tree.
+3. Click on the ""Details"" button to view the app instance details.
+4. In the app instance details, you will find a ""Move"" button. Click on it.
+5. A dialog will appear where you can select the destination folder for the app.
+6. Choose the desired folder and click on the ""Move"" button to complete the process.
+
+By following these steps, you can easily move apps between different folders in the Edit Apps tree."
+How can I access and manage my account settings in PerfectApps?, You can access and manage your account settings in PerfectApps by going to the Settings Dashboard and navigating to the Account Settings tree.,"To access and manage your account settings in PerfectApps, you need to follow these steps:
+
+1. Log in to PerfectApps and load the Settings Dashboard.
+2. In the tree, expand Account Settings and then Users.
+3. Locate the user who should be given API access. Be sure to choose a user account dedicated to API purposes.
+4. Select the API checkbox under the Role heading in the User details area.
+5. Click Apply Changes.
+6. Finally, click the Send API Key button. This will email a special key to the address and alternate email address (if used). This key will need to be used as an extra level of security to prevent unauthorized API access.
+
+Please note that it is recommended to dedicate an account for processes that use API access to avoid a logged-on user losing their connection."
+"What steps should I follow to add an e-mail server as an account resource, and what happens if email notifications fail to deliver?"," To add an e-mail server as an account resource, you must have a Full User account with the added Account privilege. Go to the Settings Dashboard, click the New button and choose Email Server. On the Email Server details screen, enter a Name for the server under the General section and choose Basic or Microsoft 365 Exchange Online from the Server Type drop-down. Settings are defined for each e-mail server in the Resources section. If email notifications fail to deliver, the system will retry the notification a number of times (up to 4) before it is designated as failed and can be viewed in the Notifications Dashboard.","To add an e-mail server as an account resource, follow these steps:
+
+1. Go to the Settings Dashboard.
+2. Click the New button and choose Email Server.
+3. On the Email Server details screen, enter a Name for the server under the General section.
+4. Choose either Basic or Microsoft 365 Exchange Online from the Server Type drop-down.
+5. Enter the SMTP address in the Name field.
+6. If necessary, check the Requires SSL box and enter the e-mail username and password.
+7. Enter the Display Name and Email Address for the user and reply-to fields.
+8. Apply any additional settings in the Failed Notifications section.
+9. Click Apply Changes to create the new e-mail server resource.
+10. Click the Test button to verify the set-up.
+
+If email notifications fail to deliver, you can manage them using the Failed Notifications feature. To view failure notifications in the dashboard, follow these steps:
+
+1. Go to the Notifications Dashboard.
+2. Select the Failed Notifications option in the left panel.
+3. Use the filters to search for specific notifications.
+4. To re-send failed notifications, select the notifications and press the re-try button.
+
+Please note that you must have been granted Account & Failed Notification privileges to manage account resources and view failed notifications in the dashboard."
+How can I view the count of archived instances for a specific app in PerfectApps?, You can view the count of archived instances for a specific app in PerfectApps by viewing the App Instances summary in the Edit Apps Overview page or in the app details area for a selected app.,"To view the count of archived instances for a specific app in PerfectApps, you can use the ""App Instances list"" option in the Apps Dashboard. Here are the steps to follow:
+
+1. Go to the Apps Dashboard in PerfectApps.
+2. Select ""Edit Apps"" and then choose the specific app you want to view the count of archived instances for.
+3. In the App details, you will find the ""App Instances list"" option. Click on it.
+4. This will display a complete list of app instances that exist for your app.
+5. To filter based on archived instances, you can use the filter options available in the list.
+
+By following these steps, you will be able to view the count of archived instances for a specific app in PerfectApps.
+
+Please note that the verified sources do not provide specific information about the count of archived instances. However, based on the functionality of the ""App Instances list"" option, it is reasonable to assume that you can filter the list to view archived instances."
+"How can I change the app, page, or object properties within the App Designer?"," You can select an object on the canvas and modify the attributes in the Properties panel. Depending on the view (Layout, Mobile, Behavior, or Workflow) and item selected (app, page, or object), different options will be presented. To view or modify theme settings, go to App Properties by clicking the navigation arrows in the Properties panel or clicking on the canvas background. To reset style settings, go to Page, Group or Object Properties by clicking the navigation arrows in the Properties panel or selecting an app object or page in the layout area.","To change the app, page, or object properties within the App Designer, you can follow these steps:
+
+1. Select the object on the canvas that you want to modify.
+2. In the Properties panel, you will see the available configuration options for the selected object.
+3. Depending on the view (Layout, Mobile, Behavior, or Workflow) and the item selected (app, page, or object), different options will be presented.
+4. Modify the attributes in the Properties panel to change the desired properties of the object.
+
+Please note that the Properties panel dynamically displays the available properties for the selected object, and you can navigate through different items or pages using the navigation arrows on the panel.
+
+If you need a complete description of properties for each object in the four views, you can refer to the Layout Objects Properties Reference, Mobile Design Reference, Behaviors Properties Reference, or Workflow Properties Reference.
+
+I hope this helps! Let me know if you have any further questions."
