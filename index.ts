@@ -7,6 +7,9 @@ function generateConversationId(): string {
     return Math.floor(10000 + Math.random() * 90000).toString();
 }
 
+const questionsPerBatch = 6;  // Number of questions processed before waiting
+const timeoutDuration = 10000;  // Duration of the wait in milliseconds
+
 async function evaluateQueries(apiKey: string, filePath: string): Promise<void> {
     try {
         const csvContent = fs.readFileSync(filePath, 'utf8');
@@ -21,8 +24,8 @@ async function evaluateQueries(apiKey: string, filePath: string): Promise<void> 
 
         const showProgress = setInterval(() => {
             const elapsedMinutes = (Date.now() - startTime) / 60000;
-            const avgTimePerSet = elapsedMinutes / (processedCount / 6);
-            const setsLeft = (totalQuestions - processedCount) / 6;
+            const avgTimePerSet = elapsedMinutes / (processedCount / questionsPerBatch);
+            const setsLeft = (totalQuestions - processedCount) / questionsPerBatch;
             const estimatedTimeLeft = avgTimePerSet * setsLeft;
 
             console.log(`Progress: ${processedCount}/${totalQuestions} Estimated time left: ${estimatedTimeLeft.toFixed(2)} minutes.`);
@@ -44,9 +47,9 @@ async function evaluateQueries(apiKey: string, filePath: string): Promise<void> 
 
                 results[i].mendableAnswer = response.data.answer.text;
 
-                // Pause every 6 requests for 10 seconds
-                if (i % 6 === 5) {
-                    await new Promise(resolve => setTimeout(resolve, 10000));
+                // Pause after questionsPerBatch questions for timeoutDuration milliseconds
+                if (i % questionsPerBatch === (questionsPerBatch - 1)) {
+                    await new Promise(resolve => setTimeout(resolve, timeoutDuration));
                 }
 
                 processedCount++;
@@ -69,6 +72,6 @@ async function evaluateQueries(apiKey: string, filePath: string): Promise<void> 
 }
 
 // Usage:
-evaluateQueries('448a3e47-642b-48be-92d1-d67d0e44221c', '/workspaces/mendable_evaluation/perfect_apps_eval.csv')
+evaluateQueries('448a3e47-642b-48be-92d1-d67d0e44221c', '/workspaces/mendable_evaluation/test_perfect_apps_eval.csv')
     .then(() => console.log('Done'))
     .catch(err => console.error('Error:', err));

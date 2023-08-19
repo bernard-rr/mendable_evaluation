@@ -43,6 +43,8 @@ var fast_csv_1 = require("fast-csv");
 function generateConversationId() {
     return Math.floor(10000 + Math.random() * 90000).toString();
 }
+var questionsPerBatch = 6; // Number of questions processed before waiting
+var timeoutDuration = 10000; // Duration of the wait in milliseconds
 function evaluateQueries(apiKey, filePath) {
     return __awaiter(this, void 0, void 0, function () {
         var csvContent, results, totalQuestions_1, processedCount_1, startTime_1, showProgress, i, question, conversation_id, response, error_1, currentTimestamp, csvOutput, error_2;
@@ -60,8 +62,8 @@ function evaluateQueries(apiKey, filePath) {
                     startTime_1 = Date.now();
                     showProgress = setInterval(function () {
                         var elapsedMinutes = (Date.now() - startTime_1) / 60000;
-                        var avgTimePerSet = elapsedMinutes / (processedCount_1 / 6);
-                        var setsLeft = (totalQuestions_1 - processedCount_1) / 6;
+                        var avgTimePerSet = elapsedMinutes / (processedCount_1 / questionsPerBatch);
+                        var setsLeft = (totalQuestions_1 - processedCount_1) / questionsPerBatch;
                         var estimatedTimeLeft = avgTimePerSet * setsLeft;
                         console.log("Progress: ".concat(processedCount_1, "/").concat(totalQuestions_1, " Estimated time left: ").concat(estimatedTimeLeft.toFixed(2), " minutes."));
                     }, 20000);
@@ -84,8 +86,8 @@ function evaluateQueries(apiKey, filePath) {
                 case 3:
                     response = _a.sent();
                     results[i].mendableAnswer = response.data.answer.text;
-                    if (!(i % 6 === 5)) return [3 /*break*/, 5];
-                    return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 10000); })];
+                    if (!(i % questionsPerBatch === (questionsPerBatch - 1))) return [3 /*break*/, 5];
+                    return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, timeoutDuration); })];
                 case 4:
                     _a.sent();
                     _a.label = 5;
@@ -117,6 +119,6 @@ function evaluateQueries(apiKey, filePath) {
     });
 }
 // Usage:
-evaluateQueries('448a3e47-642b-48be-92d1-d67d0e44221c', '/workspaces/mendable_evaluation/perfect_apps_eval.csv')
+evaluateQueries('448a3e47-642b-48be-92d1-d67d0e44221c', '/workspaces/mendable_evaluation/test_perfect_apps_eval.csv')
     .then(function () { return console.log('Done'); })
     .catch(function (err) { return console.error('Error:', err); });
